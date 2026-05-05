@@ -9,13 +9,16 @@
 <body>
   <header>
     <h1>タスク管理</h1>
-    <button id="add-task-btn">+ タスクを追加</button>
+    <div class="header-right">
+      <a href="table.html" class="btn-table-view">🍽️ テーブル <span class="dish-badge hidden" id="dish-count-badge">0</span></a>
+      <button id="add-task-btn">+ タスクを追加</button>
+    </div>
   </header>
 
-  <main class="board">
+  <main class="board" id="board-view">
     <div class="column" id="col-do" data-status="do">
       <div class="column-header">
-        <h2>Do</h2>
+        <h2>🥬 食材</h2>
         <span class="count" id="count-do">0</span>
       </div>
       <div class="task-list" id="list-do"></div>
@@ -23,7 +26,7 @@
 
     <div class="column" id="col-doing" data-status="doing">
       <div class="column-header">
-        <h2>Doing</h2>
+        <h2>🍳 調理中</h2>
         <span class="count" id="count-doing">0</span>
       </div>
       <div class="task-list" id="list-doing"></div>
@@ -31,7 +34,7 @@
 
     <div class="column" id="col-done" data-status="done">
       <div class="column-header">
-        <h2>Done</h2>
+        <h2>✅ 完了</h2>
         <span class="count" id="count-done">0</span>
       </div>
       <div class="task-list" id="list-done"></div>
@@ -103,6 +106,39 @@
         <button class="btn-delete" id="detail-delete">削除</button>
         <button class="btn-cancel" id="detail-edit">編集</button>
         <button class="btn-save" id="detail-close-btn">閉じる</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- お鍋ウィジェット -->
+  <div id="pot-widget" class="pot-widget">
+    <div class="pot-info">
+      <span class="pot-title">🫕 お鍋</span>
+      <span class="pot-fraction"><span id="pot-count">0</span>&thinsp;/&thinsp;3</span>
+    </div>
+    <div class="pot-sep"></div>
+    <div id="pot-ingredients-row" class="pot-ingredients-row">
+      <span class="pot-hint">タスクを完了すると食材が入ります</span>
+    </div>
+  </div>
+
+  <!-- 調理アニメーション -->
+  <div id="cooking-overlay" class="cooking-overlay hidden">
+    <div class="cooking-card">
+      <div id="phase-cooking" class="cooking-phase">
+        <div id="cooking-ing-row" class="cooking-ing-row"></div>
+        <div class="cooking-pot-wrap">
+          <div class="cooking-steam-row">
+            <span></span><span></span><span></span><span></span>
+          </div>
+          <div class="cooking-pot-icon">🫕</div>
+        </div>
+        <p class="cooking-label">調理中...</p>
+      </div>
+      <div id="phase-done" class="cooking-phase hidden">
+        <div id="cooking-dish-icon" class="cooking-dish-icon"></div>
+        <div id="cooking-dish-name" class="cooking-dish-name"></div>
+        <p class="cooking-done-msg">テーブルに置きました 🎉</p>
       </div>
     </div>
   </div>
