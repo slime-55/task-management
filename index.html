@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>タスク管理</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header>
+    <h1>タスク管理</h1>
+    <button id="add-task-btn">+ タスクを追加</button>
+  </header>
+
+  <main class="board">
+    <div class="column" id="col-do" data-status="do">
+      <div class="column-header">
+        <h2>Do</h2>
+        <span class="count" id="count-do">0</span>
+      </div>
+      <div class="task-list" id="list-do"></div>
+    </div>
+
+    <div class="column" id="col-doing" data-status="doing">
+      <div class="column-header">
+        <h2>Doing</h2>
+        <span class="count" id="count-doing">0</span>
+      </div>
+      <div class="task-list" id="list-doing"></div>
+    </div>
+
+    <div class="column" id="col-done" data-status="done">
+      <div class="column-header">
+        <h2>Done</h2>
+        <span class="count" id="count-done">0</span>
+      </div>
+      <div class="task-list" id="list-done"></div>
+    </div>
+  </main>
+
+  <!-- タスク追加/編集モーダル -->
+  <div id="modal-overlay" class="hidden">
+    <div class="modal">
+      <div class="modal-header">
+        <h2 id="modal-title">タスクを追加</h2>
+        <button class="close-btn" id="modal-close">&times;</button>
+      </div>
+      <div class="modal-body">
+        <label>
+          タスク名 <span class="required">*</span>
+          <input type="text" id="task-title" placeholder="タスク名を入力" maxlength="100">
+        </label>
+        <label>
+          優先順位
+          <select id="task-priority">
+            <option value="high">高</option>
+            <option value="medium" selected>中</option>
+            <option value="low">低</option>
+          </select>
+        </label>
+        <label>
+          期限
+          <input type="date" id="task-deadline">
+        </label>
+        <label>
+          コメント
+          <textarea id="task-comment" placeholder="メモやコメントを入力" rows="4"></textarea>
+        </label>
+      </div>
+      <div class="modal-footer">
+        <button class="btn-cancel" id="modal-cancel">キャンセル</button>
+        <button class="btn-save" id="modal-save">保存</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- タスク詳細モーダル -->
+  <div id="detail-overlay" class="hidden">
+    <div class="modal detail-modal">
+      <div class="modal-header">
+        <h2 id="detail-title"></h2>
+        <button class="close-btn" id="detail-close">&times;</button>
+      </div>
+      <div class="modal-body">
+        <div class="detail-row">
+          <span class="detail-label">優先順位</span>
+          <span id="detail-priority" class="priority-badge"></span>
+        </div>
+        <div class="detail-row">
+          <span class="detail-label">期限</span>
+          <span id="detail-deadline"></span>
+        </div>
+        <div class="detail-row">
+          <span class="detail-label">ステータス</span>
+          <span id="detail-status"></span>
+        </div>
+        <div class="detail-row detail-comment-row">
+          <span class="detail-label">コメント</span>
+          <p id="detail-comment"></p>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn-delete" id="detail-delete">削除</button>
+        <button class="btn-cancel" id="detail-edit">編集</button>
+        <button class="btn-save" id="detail-close-btn">閉じる</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
